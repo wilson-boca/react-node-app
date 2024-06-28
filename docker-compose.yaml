@@ -1,11 +1,11 @@
 version: '3.8'
 services:
-  # frontend:
-  #   build: ./frontend
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - ./frontend:/usr/src/app
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/usr/src/app
   mongo:
     container_name: "mongodb"
     image: mongo:6.0-focal
