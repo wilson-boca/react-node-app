@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  # frontend:
+  #   build: ./frontend
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./frontend:/usr/src/app
+  mongo:
+    container_name: "mongodb"
+    image: mongo:6.0-focal
+    ports:
+      - "27017:27017"
+    volumes:
+      - db-data:/data/db
+  backend:
+    build: ./backend
+    environment:
+      - DB_HOST=mongo
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/usr/src/app
+    depends_on:
+      - mongo      
+volumes:
+  db-data:
