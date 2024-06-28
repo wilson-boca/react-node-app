@@ -35,6 +35,9 @@ $docker-compose up -d
 ## Documentação OpenAPI - Swagger
 Esse projeto conta com Swagger para documentação de todos os endpoints com seus respectivos parâmetros, requests e responses.
 \
+\
 [Clique aqui acessar o Swagger](http://localhost:8000/api/v1/api-docs), 
 você verá uma tela conforme abaixo.
+\
+\
 ![Swagger](Swagger.png)
