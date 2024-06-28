@@ -31,6 +31,7 @@ Para executar o backend + frontend + banco de dados, instale o docker-compose [v
 ```
 $docker-compose up -d
 ```
+Acesse a aplicação(frontend) nesse endereço <b>[http://0.0.0.0:3000](http://0.0.0.0:3000)</b>
 
 ## Documentação OpenAPI - Swagger
 Esse projeto conta com Swagger para documentação de todos os endpoints com seus respectivos parâmetros, requests e responses.
