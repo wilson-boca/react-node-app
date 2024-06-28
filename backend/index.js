@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const userRoute = require('./routes/users-route');
 const projectRoute = require('./routes/projects-route');
 const taskRoute = require('./routes/tasks-route');
+const swaggerRoute = require('./routes/swagger');
 
 app = express();
 
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use('/api/v1', userRoute);
 app.use('/api/v1', projectRoute);
 app.use('/api/v1', taskRoute);
+app.use('/api/v1', swaggerRoute);
 
 const dbHost = process.env.DB_HOST;
 
