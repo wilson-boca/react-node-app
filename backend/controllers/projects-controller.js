@@ -27,8 +27,6 @@ const getProject = async (req, res) => {
 const putProject = async (req, res) => {
   try{    
     const id = req.params.id;
-    console.log("ID_HERE", id);
-    console.log("BODY_HERE", req.body);
     await Project.updateOne({ _id: id }, req.body)
     res.send({'message': 'Projeto atualizado com sucesso'});  
   } catch (error) {
