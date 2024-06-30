@@ -1,9 +1,9 @@
 import React, {useRef} from "react";
 import axios from "axios";
-import styled from "styled-components";
 import secureLocalStorage from 'react-secure-storage';
 import { FaTrash, FaEdit, FaList } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 import {
   Table,
   Thead,
@@ -17,6 +17,8 @@ const Grid = ({ projects, setProjects, setOnEdit }) => {
   const handleEdit = (item) => {
     setOnEdit(item);
   };
+
+  const navigate = useNavigate();
 
   const handleDelete = async (id) => {
     const data = await secureLocalStorage.getItem('credentials');
@@ -36,14 +38,19 @@ const Grid = ({ projects, setProjects, setOnEdit }) => {
   };
 
   const handleTasks = async (item) => {
-    console.log("Go to the other screen", item);
+    navigate(
+      '/tasks',{
+      state: {
+        item: item,
+      }
+    });
   }
 
   return (
     <Table>
       <Thead>
         <Tr>
-          <Th>Título</Th>
+          <Th>Nome do Projeto</Th>
           <Th>Descrição</Th>
           <Th></Th>
           <Th></Th>

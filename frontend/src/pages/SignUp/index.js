@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast, ToastContainer } from "react-toastify";
 import RegisterForm from '../../components/RegisterForm';
 
 const RegisterScreen = () => {
@@ -11,6 +12,9 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState()
 
   const handleSave = async() => { 
+    if (!userName|| !email || !password){
+      return toast.warn('Por favor, preencha todos os campos');
+    }
 
     const body = {
       "name": userName,
@@ -22,23 +26,27 @@ const RegisterScreen = () => {
       body, 
       {headers:{'Content-Type': 'application/json'}})
     .then((response) => {
-        console.log(response.data);
         navigate('/');
     })
     .catch((error) => {
-        // TODO adicionar Toastiy para problemas com a conexão
-        console.error(error);
+      if (error.message.includes('409')){
+        return toast.error("Já existe um usuário com esse email.");
+      }
+      toast.error(`Erro ao criar usuário, erro: ${error.message}`);
     });
   };
 
   return (
+    <>
     <RegisterForm
       setEmail={setEmail}
       setUserName={setUserName}
       setPassword={setPassword}
       handleSave={handleSave}
     />
+    <ToastContainer autoClose={3000} />
+    </>
   );
-};
+};ToastContainer
 
 export default RegisterScreen;

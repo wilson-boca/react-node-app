@@ -10,19 +10,19 @@ import {
   Button
 } from './styles'
 
-const Form = ({ getProjects, onEdit, setOnEdit }) => {
+const Form = ({ getProjects, onEdit, setOnEdit, projectId }) => {
   const ref = useRef();
 
   useEffect(() => {
     if (onEdit) {
       const project = ref.current;
-      project.name.value = onEdit.name;
+      project.title.value = onEdit.title;
       project.description.value = onEdit.description;
-      setProjectId(onEdit._id);
+      setId(onEdit._id);
     }
   }, [onEdit]);
 
-  const [projectId, setProjectId] = useState();
+  const [id, setId] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const Form = ({ getProjects, onEdit, setOnEdit }) => {
     const project = ref.current;
 
     if (
-      !project.name.value ||
+      !project.title.value ||
       !project.description.value
     ) {
       return toast.warn("Preencha todos os campos!");
@@ -40,25 +40,25 @@ const Form = ({ getProjects, onEdit, setOnEdit }) => {
 
     if (onEdit) {
       axios
-        .put(`http://0.0.0.0:8000/api/v1/projects/${projectId}`, {
-          name: project.name.value,
+        .put(`http://0.0.0.0:8000/api/v1/tasks/${id}`, {
+          title: project.title.value,
           description: project.description.value,
         },
         {headers:{'Authorization': `Bearer ${data.token}`}})
-        .then(() => toast.success("Projeto atualizado com sucesso!"))
+        .then(() => toast.success("Tarefa atualizada com sucesso!"))
         .catch(() => toast.error("Erro ao atualizar, tente novamente mais tarde."));
     } else {
       axios
-        .post("http://0.0.0.0:8000/api/v1/projects", {
-          name: project.name.value,
+        .post(`http://0.0.0.0:8000/api/v1/projects/${projectId}/tasks`, {
+          title: project.title.value,
           description: project.description.value,
         },
         {headers:{'Authorization': `Bearer ${data.token}`}})
-        .then(() => toast.success('Projeto cadastrado com sucesso!'))
-        .catch(() => toast.error('Erro ao cadastrar projeto, tente novamente mais tarde.'));
+        .then(() => toast.success('Tarefa cadastrada com sucesso!'))
+        .catch(() => toast.error('Erro ao cadastrar tarefa, tente novamente mais tarde.'));
     }
 
-    project.name.value = "";
+    project.title.value = "";
     project.description.value = "";
     setOnEdit(null);
     getProjects();
@@ -67,8 +67,8 @@ const Form = ({ getProjects, onEdit, setOnEdit }) => {
   return (
     <FormContainer ref={ref} onSubmit={handleSubmit}>
       <InputArea>
-        <Label>Nome do Projeto</Label>
-        <Input name="name" />
+        <Label>Título</Label>
+        <Input name="title" />
       </InputArea>
       <InputArea>
         <Label>Descrição</Label>
