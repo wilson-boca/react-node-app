@@ -38,9 +38,14 @@ export const Button = styled.button`
   height: 42px;
 `;
 
+export const MyDiv = styled.div`
+  width: 101%;
+  height: 600px;
+  overflow: auto;
+`;
 
 export const Table = styled.table`
-  width: 100%;
+  width: 99%;
   background-color: #fff;
   padding: 20px;
   box-shadow: 0px 0px 5px #ccc;

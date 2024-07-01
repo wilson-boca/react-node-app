@@ -25,7 +25,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  place-items: stretch;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -52,6 +52,14 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.navBar{
+  display: flex;
+  position: sticky !important;
+  background-color: #763ec9;
+  border-color: #646cff;
+  padding: 6%;
 }
 
 @media (prefers-color-scheme: light) {

@@ -31,7 +31,7 @@ const AuthForm = ({ setUserName, setPassword, handleButtonClick }) => {
               />
             </div>
             <Button 
-              label="Entrar" 
+              label="ENTRAR" 
               text raised 
               style={{ marginTop: '10px' }}
               onClick={handleButtonClick}

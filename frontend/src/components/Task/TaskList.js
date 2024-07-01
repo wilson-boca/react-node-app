@@ -12,7 +12,8 @@ import {
   Tbody,
   Tr,
   Th,
-  Td
+  Td,
+  MyDiv
 } from './styles';
 
 const Grid = ({ tasks, setTasks, setOnEdit, handleComplete }) => {
@@ -49,6 +50,7 @@ const Grid = ({ tasks, setTasks, setOnEdit, handleComplete }) => {
   }
 
   return (
+    <MyDiv>
     <Table>
       <Thead>
         <Tr>
@@ -57,6 +59,9 @@ const Grid = ({ tasks, setTasks, setOnEdit, handleComplete }) => {
           <Th>Status</Th>
           <Th>Responsável</Th>
           <Th>Data - Hora</Th>
+          <Th></Th>
+          <Th></Th>
+          <Th></Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -93,6 +98,7 @@ const Grid = ({ tasks, setTasks, setOnEdit, handleComplete }) => {
         ))}
       </Tbody>
     </Table>
+    </MyDiv>
   );
 };
 

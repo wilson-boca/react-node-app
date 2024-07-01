@@ -3,7 +3,7 @@ import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 
-const RegisterForm = ({ setUserName, setEmail, setPassword, handleSave }) => {
+const RegisterForm = ({ setUserName, setEmail, setPassword, handleSave, handleBack }) => {
 
   return (
     <div className="flex align-items-center justify-content-center" style={{ height: '100vh' }}>
@@ -37,10 +37,16 @@ const RegisterForm = ({ setUserName, setEmail, setPassword, handleSave }) => {
               />
             </div>
             <Button 
-              label="Salvar" 
+              label="SALVAR" 
               text raised 
               style={{ marginTop: '10px' }}
               onClick={handleSave}
+            />
+                        <Button 
+              label="VOLTAR" 
+              text raised 
+              style={{ marginTop: '10px' }}
+              onClick={handleBack}
             />
           </div>
 

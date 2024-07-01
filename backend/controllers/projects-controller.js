@@ -17,7 +17,9 @@ const postProject = async (req, res) => {
 
 const getProject = async (req, res) => {
     try {
-      const project = await Project.find({ userId: req.user._id });
+      // TODO Perguntar se cada user só pode ver suus próprios projetos/tarefas.
+      // const project = await Project.find({ userId: req.user._id });
+      const project = await Project.find();
       res.send(project);
     } catch (error) {
       res.status(400).send(error);

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState } from 'react';
 import { Route, Navigate, Routes, useNavigate } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage';
 import SignIn from './pages/SignIn';
@@ -8,32 +8,36 @@ import TasksListScreen from './pages/Tasks';
 
 const AppRoutes = () => {
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     const doIt = async () => {
-      const token = await secureLocalStorage.getItem('credentials');
-      if (token){
+      const data = await secureLocalStorage.getItem('credentials');
+      if (data){
         setIsAuthenticated(true);
-        navigate('/projects');      
       }
     };
     doIt();
   }, []);
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
-  const ProtectedRoute = ({ component: Component, ...rest }) => (
-    isAuthenticated ? <Component {...rest} /> : <Navigate to="/login" replace />
-  );
-  
+
+  if (!isAuthenticated) {
+    return (
+      <Routes>
+        <Route path="/login" element={<SignIn setIsAuthenticated={setIsAuthenticated}/>} />
+        <Route path="/register" element={<SignUp component={SignUp} />} />
+        <Route path="*" element={<SignIn setIsAuthenticated={setIsAuthenticated}/>} />
+      </Routes>
+    );
+  }
+    
   return (
     <Routes>
-      <Route path="/login" element={<SignIn setIsAuthenticated={setIsAuthenticated}/>} />
+      <Route path="/tasks" element={<TasksListScreen />} />
       <Route path="/register" element={<SignUp component={SignUp} />} />
-      <Route path="/tasks" element={<ProtectedRoute component={TasksListScreen} />} />
-      <Route path="/projects" element={<ProtectedRoute component={ProjectsListScreen} />} />
-      <Route path="*" element={<SignIn setIsAuthenticated={setIsAuthenticated}/>} />
+      <Route path="/projects" element={<ProjectsListScreen/>} />    
+      <Route path="/login" element={<SignIn setIsAuthenticated={setIsAuthenticated}/>} />  
+      <Route path="*" element={<ProjectsListScreen/>} />      
     </Routes>
   );
 };

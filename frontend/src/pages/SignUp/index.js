@@ -26,7 +26,7 @@ const RegisterScreen = () => {
       body, 
       {headers:{'Content-Type': 'application/json'}})
     .then((response) => {
-        navigate('/');
+        navigate('/register');
     })
     .catch((error) => {
       if (error.message.includes('409')){
@@ -36,6 +36,10 @@ const RegisterScreen = () => {
     });
   };
 
+  const handleBack = () => {
+    navigate('/login');
+  }
+
   return (
     <>
     <RegisterForm
@@ -43,6 +47,7 @@ const RegisterScreen = () => {
       setUserName={setUserName}
       setPassword={setPassword}
       handleSave={handleSave}
+      handleBack={handleBack}
     />
     <ToastContainer autoClose={3000} />
     </>

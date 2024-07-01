@@ -6,6 +6,7 @@ import secureLocalStorage from 'react-secure-storage';
 
 import Form from "../../components/Project/ProjectForm";
 import Grid from "../../components/Project/ProjectList";
+import Navbar from "../../components/NavBar";
 import {
   Container,
   Title
@@ -44,9 +45,10 @@ const Projects = () => {
   }, [setProjects]);
 
   return (
-    <>
+    <>    
+      <Navbar userName={userData ? userData.name : ''} />
       <Container>
-        <Title>Cadastro de Projetos - TaskFlow</Title>
+        <Title>Manutenção de Projetos</Title>
         <Form onEdit={onEdit} setOnEdit={setOnEdit} getProjects={getProjects} />
         <Grid setOnEdit={setOnEdit} projects={projects} setProjects={setProjects} />
       </Container>

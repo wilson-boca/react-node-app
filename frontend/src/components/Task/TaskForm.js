@@ -10,14 +10,14 @@ import {
   Button
 } from './styles'
 
-const Form = ({ getProjects, onEdit, setOnEdit, projectId }) => {
+const Form = ({ getTasks, onEdit, setOnEdit, projectId }) => {
   const ref = useRef();
 
   useEffect(() => {
     if (onEdit) {
-      const project = ref.current;
-      project.title.value = onEdit.title;
-      project.description.value = onEdit.description;
+      const task = ref.current;
+      task.title.value = onEdit.title;
+      task.description.value = onEdit.description;
       setId(onEdit._id);
     }
   }, [onEdit]);
@@ -27,11 +27,11 @@ const Form = ({ getProjects, onEdit, setOnEdit, projectId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const project = ref.current;
+    const task = ref.current;
 
     if (
-      !project.title.value ||
-      !project.description.value
+      !task.title.value ||
+      !task.description.value
     ) {
       return toast.warn("Preencha todos os campos!");
     }
@@ -41,8 +41,8 @@ const Form = ({ getProjects, onEdit, setOnEdit, projectId }) => {
     if (onEdit) {
       axios
         .put(`http://0.0.0.0:8000/api/v1/tasks/${id}`, {
-          title: project.title.value,
-          description: project.description.value,
+          title: task.title.value,
+          description: task.description.value,
         },
         {headers:{'Authorization': `Bearer ${data.token}`}})
         .then(() => toast.success("Tarefa atualizada com sucesso!"))
@@ -50,18 +50,18 @@ const Form = ({ getProjects, onEdit, setOnEdit, projectId }) => {
     } else {
       axios
         .post(`http://0.0.0.0:8000/api/v1/projects/${projectId}/tasks`, {
-          title: project.title.value,
-          description: project.description.value,
+          title: task.title.value,
+          description: task.description.value,
         },
         {headers:{'Authorization': `Bearer ${data.token}`}})
         .then(() => toast.success('Tarefa cadastrada com sucesso!'))
         .catch(() => toast.error('Erro ao cadastrar tarefa, tente novamente mais tarde.'));
     }
 
-    project.title.value = "";
-    project.description.value = "";
+    task.title.value = "";
+    task.description.value = "";
     setOnEdit(null);
-    getProjects();
+    getTasks();
   };
 
   return (

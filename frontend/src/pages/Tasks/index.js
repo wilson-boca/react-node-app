@@ -7,13 +7,14 @@ import { useLocation } from 'react-router-dom';
 
 import Form from "../../components/Task/TaskForm";
 import Grid from "../../components/Task/TaskList";
+import Navbar from "../../components/NavBar";
 import {
   Container,
   Title
 } from "./styles";
 
 const Tasks = () => {
-  const [projects, setProjects] = useState([]);
+  const [projects, setTasks] = useState([]);
   const [onEdit, setOnEdit] = useState(null);
   const [userData, setUserData] = useState();
 
@@ -27,17 +28,17 @@ const Tasks = () => {
       const response = await axios.get(
         `http://0.0.0.0:8000/api/v1/projects/${item._id}/tasks`,
         {headers:{'Authorization': `Bearer ${data.token}`}});
-      setProjects(response.data.sort((a, b) => (a.name > b.name ? 1 : -1)));  
+      setTasks(response.data.sort((a, b) => (a.name > b.name ? 1 : -1)));  
     };
     getData();
   }, []);
 
-  const getProjects = async () => {
+  const getTasks = async () => {
     try {
       const response = await axios.get(
         `http://0.0.0.0:8000/api/v1/projects/${item._id}/tasks`,
         {headers:{'Authorization': `Bearer ${userData.token}`}});
-      setProjects(response.data.sort((a, b) => (a.name > b.name ? 1 : -1)));      
+      setTasks(response.data.sort((a, b) => (a.name > b.name ? 1 : -1)));      
     } catch (error) {
       toast.error(error);
     }
@@ -52,14 +53,14 @@ const Tasks = () => {
     {headers:{'Authorization': `Bearer ${data.token}`}})
     .then(() => {      
       toast.success("Status atualizado com sucesso!");
-      getProjects();
+      getTasks();
     })
     .catch(() => toast.error("Erro ao atualizar status, tente novamente mais tarde."));
   }
 
   useEffect(() => {
-    getProjects();
-  }, [setProjects]);
+    getTasks();
+  }, [setTasks]);
 
   if (!item){
     return <></>;
@@ -67,10 +68,11 @@ const Tasks = () => {
 
   return (
     <>
+      <Navbar userName={userData ? userData.name : ''} showBack={true}/>
       <Container>
-        <Title>Tarefas do Projeto {item.name} - TaskFlow</Title>
-        <Form onEdit={onEdit} setOnEdit={setOnEdit} getProjects={getProjects} projectId={item._id} />
-        <Grid setOnEdit={setOnEdit} tasks={projects} setTasks={setProjects} handleComplete={handleComplete}  />
+        <Title>Manutenção de Tarefas do Projeto - {item.name}</Title>
+        <Form onEdit={onEdit} setOnEdit={setOnEdit} getTasks={getTasks} projectId={item._id} />
+        <Grid setOnEdit={setOnEdit} tasks={projects} setTasks={setTasks} handleComplete={handleComplete}  />
       </Container>
       <ToastContainer autoClose={3000} />
     </>

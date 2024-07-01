@@ -10,7 +10,8 @@ import {
   Tbody,
   Tr,
   Th,
-  Td
+  Td,
+  MyDiv
 } from './styles';
 
 const Grid = ({ projects, setProjects, setOnEdit }) => {
@@ -47,6 +48,7 @@ const Grid = ({ projects, setProjects, setOnEdit }) => {
   }
 
   return (
+    <MyDiv>
     <Table>
       <Thead>
         <Tr>
@@ -54,13 +56,14 @@ const Grid = ({ projects, setProjects, setOnEdit }) => {
           <Th>Descrição</Th>
           <Th></Th>
           <Th></Th>
+          <Th></Th>
         </Tr>
       </Thead>
       <Tbody>
         {projects.map((item, i) => (
           <Tr key={i}>
-            <Td width="30%">{item.name}</Td>
-            <Td width="55%">{item.description}</Td>
+            <Td width="32%">{item.name}</Td>
+            <Td width="54%">{item.description}</Td>
             <Td alignCenter width="3%">
               <FaEdit onClick={() => handleEdit(item)} />
             </Td>
@@ -78,6 +81,7 @@ const Grid = ({ projects, setProjects, setOnEdit }) => {
         ))}
       </Tbody>
     </Table>
+    </MyDiv>
   );
 };
 
