@@ -3,47 +3,58 @@
 ### Aplicação para gerenciamento de projetos e tarefas com backend em NodeJS e frontend em ReactJS. Permite criar, listar, atualizar e excluir projetos e tarefas, com suporte a autenticação(JWT) e registro de usuários.
 
 ## Rodando a aplicação com docker-compose
-Para executar o backend + frontend + banco de dados, instale o docker-compose [veja como instalar aqui](https://docs.docker.com/compose/install/), na pasta raiz do projeto, digite o seguinte comando:
+Para executar o backend + frontend + banco de dados, instale o 
+docker [veja como instalar aqui](https://docs.docker.com/engine/install/) e o
+docker-compose [veja como instalar aqui](https://docs.docker.com/compose/install/), na pasta raiz do projeto, digite o seguinte comando:
 ```
 $docker-compose up -d
 ```
-Isso é tudo, a primeira vezx pode demorar um pouco devido ao processo de Download das imagens, nas demais vezes é pra ser bem rápido pra subir.
+Isso é tudo, a primeira vez pode demorar alguns minutos devido ao processo de Download das imagens.
+\
+Para acessar a aplicação acesse: [http://0.0.0.0:3000/](http://0.0.0.0:3000/)
+\
+Crie seu usuário clicando no link "Cadastre-se" e efetue o login.
 
+## Rodando a aplicação sem Docker
 
-## Rodando o backend sem Docker
-
-Instale o Node
+#### Instale o Node
 ```
 $nvm install 16.10.0
 $nvm use 16.10.0
 ```
 
-## Configurando o banco de dados
-O backend usa MongoDB para a gravação de dados, para rodar o mongo no seu ambiente local com Docker use:
-```
-$docker run -d -h mongo --name mongo -p 27017:27017 mongo:6.0-focal
-```
-Caso queira usar o MongoDB Compass, use essa string de conexão:
-<b>mongodb://localhost:27017</b>
-
-
-## Executando o backend
+### Rodando o backend
 Na pasta raiz do projeto digite:
 ```
 $cd backend
 $npm install
 $npm run start
 ```
-O servidor roda na porta 8000, para verificar se tudo esta ok acesse [http://localhost:8000/api/v1/healthcheck](http://localhost:8000/api/v1/healthcheck)
+O servidor roda na porta 8000, para verificar se está tudo ok acesse [http://localhost:8000/api/v1/healthcheck](http://localhost:8000/api/v1/healthcheck)
 
-Acesse a aplicação(frontend) nesse endereço <b>[http://0.0.0.0:3000](http://0.0.0.0:3000)</b>
+### Rodando o frontend
+Na pasta raiz do projeto digite:
+```
+$cd frontend
+$npm run dev
+```
+O frontend roda na porta 8080, para acessar a aplicação acesse: [http://localhost:8080/](http://localhost:8080/)
+
+### Instalando o banco de dados
+O backend usa MongoDB como fonte de dados, para rodar o mongo no seu ambiente local com Docker use:
+```
+$docker run -d -h mongo --name mongo -p 27017:27017 mongo:6.0-focal
+```
+Sem Docker [veja como instalar aqui](https://www.mongodb.com/docs/manual/installation/).
+
+Para usar o [Compass GUI](https://www.mongodb.com/products/tools/compass), use a string de conexão:
+<b>mongodb://localhost:27017</b>
 
 ## Documentação OpenAPI - Swagger
 Esse projeto conta com Swagger para documentação de todos os endpoints com seus respectivos parâmetros, requests e responses.
 \
 \
-[Clique aqui acessar o Swagger](http://localhost:8000/api/v1/api-docs), 
-você verá uma tela conforme abaixo.
+[Clique aqui acessar o Swagger](http://localhost:8000/api/v1/api-docs).
 \
 \
 ![Swagger](Swagger.png)
