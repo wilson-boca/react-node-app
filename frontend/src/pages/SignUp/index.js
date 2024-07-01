@@ -26,7 +26,10 @@ const RegisterScreen = () => {
       body, 
       {headers:{'Content-Type': 'application/json'}})
     .then((response) => {
-        navigate('/register');
+        toast.success("Novo usuário criado com sucesso!");
+        setTimeout(() => {
+          handleBack();
+        }, 2000);
     })
     .catch((error) => {
       if (error.message.includes('409')){
