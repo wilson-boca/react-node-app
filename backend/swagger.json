@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "NodeJS REST API - (Projects/Tasks)",
+    "title": "NodeJS REST API - TaskFlow",
     "description": ""
   },
   "host": "localhost:8000/api/v1",

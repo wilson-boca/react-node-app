@@ -11,7 +11,7 @@ $docker-compose up -d
 ```
 Isso é tudo, a primeira vez pode demorar alguns minutos devido ao processo de Download das imagens.
 \
-Para acessar a aplicação acesse: [http://0.0.0.0:3000/](http://0.0.0.0:3000/)
+Para entrar na aplicação acesse: [http://0.0.0.0:3000/](http://0.0.0.0:3000/)
 \
 Crie seu usuário clicando no link "Cadastre-se" e efetue o login.
 
@@ -38,7 +38,7 @@ Na pasta raiz do projeto digite:
 $cd frontend
 $npm run dev
 ```
-O frontend roda na porta 8080, para acessar a aplicação acesse: [http://localhost:8080/](http://localhost:8080/)
+O frontend roda na porta 8080, para entrar na aplicação acesse: [http://localhost:8080/](http://localhost:8080/)
 
 ### Instalando o banco de dados
 O backend usa MongoDB como fonte de dados, para rodar o mongo no seu ambiente local com Docker use:
