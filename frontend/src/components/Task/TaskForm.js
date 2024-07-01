@@ -39,7 +39,7 @@ const Form = ({ getTasks, onEdit, setOnEdit, projectId }) => {
     const data = await secureLocalStorage.getItem('credentials');
 
     if (onEdit) {
-      axios
+      await axios
         .put(`http://0.0.0.0:8000/api/v1/tasks/${id}`, {
           title: task.title.value,
           description: task.description.value,
@@ -48,7 +48,7 @@ const Form = ({ getTasks, onEdit, setOnEdit, projectId }) => {
         .then(() => toast.success("Tarefa atualizada com sucesso!"))
         .catch(() => toast.error("Erro ao atualizar, tente novamente mais tarde."));
     } else {
-      axios
+      await axios
         .post(`http://0.0.0.0:8000/api/v1/projects/${projectId}/tasks`, {
           title: task.title.value,
           description: task.description.value,

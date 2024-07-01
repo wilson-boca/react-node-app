@@ -47,6 +47,10 @@ const Grid = ({ projects, setProjects, setOnEdit }) => {
     });
   }
 
+  const isOdd = (num) => { 
+    return num % 2;
+  }
+
   return (
     <MyDiv>
     <Table>
@@ -61,7 +65,7 @@ const Grid = ({ projects, setProjects, setOnEdit }) => {
       </Thead>
       <Tbody>
         {projects.map((item, i) => (
-          <Tr key={i}>
+          <Tr key={i} bgcolor={isOdd(i) ? "#F5F7F8": null}>
             <Td width="32%">{item.name}</Td>
             <Td width="54%">{item.description}</Td>
             <Td alignCenter width="3%">

@@ -24,7 +24,7 @@ const Navbar = ({ userName='Unknown', showBack=false}) => {
   return (
         <>
             <Nav>
-              <Title>Usuário logado: {userName}</Title>
+              <Title>Usuário: {userName}</Title>
               <div>
               {showBack && <Button onClick={handleBack}>VOLTAR</Button>}
               <Button onClick={handleLogout}>LOGOUT</Button>

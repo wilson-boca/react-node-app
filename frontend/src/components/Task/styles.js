@@ -19,7 +19,7 @@ export const InputArea = styled.div`
 `;
 
 export const Input = styled.input`
-  width: 42vh;
+  width: 41vh;
   padding: 0 10px;
   border: 1px solid #bbb;
   border-radius: 5px;
@@ -35,7 +35,7 @@ export const Button = styled.button`
   border: none;
   background-color: #2c73d2;
   color: white;
-  height: 42px;
+  height: 40px;
 `;
 
 export const MyDiv = styled.div`

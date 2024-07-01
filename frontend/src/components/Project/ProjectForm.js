@@ -39,7 +39,7 @@ const Form = ({ getProjects, onEdit, setOnEdit }) => {
     const data = await secureLocalStorage.getItem('credentials');
 
     if (onEdit) {
-      axios
+      await axios
         .put(`http://0.0.0.0:8000/api/v1/projects/${projectId}`, {
           name: project.name.value,
           description: project.description.value,
@@ -48,7 +48,7 @@ const Form = ({ getProjects, onEdit, setOnEdit }) => {
         .then(() => toast.success("Projeto atualizado com sucesso!"))
         .catch(() => toast.error("Erro ao atualizar, tente novamente mais tarde."));
     } else {
-      axios
+      await axios
         .post("http://0.0.0.0:8000/api/v1/projects", {
           name: project.name.value,
           description: project.description.value,
@@ -62,6 +62,7 @@ const Form = ({ getProjects, onEdit, setOnEdit }) => {
     project.description.value = "";
     setOnEdit(null);
     getProjects();
+
   };
 
   return (

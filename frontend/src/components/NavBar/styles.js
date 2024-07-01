@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 export const Nav = styled.nav`
     display: flex;
+    height: 90px;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -18,16 +19,16 @@ export const Nav = styled.nav`
 `;
 
 export const Button = styled.button`
-  padding: 10px;
-  margin: 10px;
+  padding: 8px;
+  margin: 8px;
+  font-size: 15px;
   cursor: pointer;
   border-radius: 5px;
   border: none;
   background-color: #2c73d2;
   color: white;
-  height: 42px;
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h4`
   color: white
 `;
