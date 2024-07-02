@@ -73,7 +73,7 @@ const Grid = ({ projects, setProjects, setOnEdit }) => {
             </Td>
             <Td alignCenter width="3%">
               <FaTrash onClick={() => {
-                if (window.confirm('Deseja realmente remover esse projeto?')) {
+                if (window.confirm('Deseja realmente remover esse projeto com todas as suas Tarefas?')) {
                   handleDelete(item._id);
                 }                
                 }} />

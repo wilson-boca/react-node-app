@@ -1,5 +1,6 @@
 
 const Project = require('../models/project');
+const Task = require('../models/task');
 
 const postProject = async (req, res) => {
   try {
@@ -17,7 +18,7 @@ const postProject = async (req, res) => {
 
 const getProject = async (req, res) => {
     try {
-      // TODO Perguntar se cada user só pode ver suus próprios projetos/tarefas.
+      // TODO Perguntar se cada user só pode ver seus próprios projetos/tarefas.
       // const project = await Project.find({ userId: req.user._id });
       const project = await Project.find();
       res.send(project);
@@ -39,8 +40,10 @@ const putProject = async (req, res) => {
 const deleteProject = async (req, res) => {
   try{
     const id = req.params.id;
+    // Delete cascading
+    await Task.deleteMany({ projectId: id });
     await Project.deleteOne({ _id: id })
-    res.send({'message': 'Projeto removido com sucesso'});  
+    res.send({'message': 'Projeto e Tarefas removidos com sucesso'});
   } catch (error) {
     console.error('Erro ao remover project:', error);
   }
